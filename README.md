@@ -1,74 +1,29 @@
-# Student Submission Checklist (Lab 3)
+Main code notebook is lab3_results_U20230063 for the RL lab3 submission. 
 
-Before submitting your Lab 3 assignment, ensure that **all items below are completed**. Submissions that do not follow this checklist may receive partial or no credit.
+Topics covered -
+1) User Classification:
+A classifier is trained using train_users.csv to predict the user context (User1, User2, or User3) from user features. The classifier with best results is RandomForest.
 
----
+2) Contextual Bandit Learning
+Separate bandit agents are trained for each user context. Each agent learns expected rewards for four news categories:
 
-## 🔹 Repository and Branching
+Entertainment
+Education
+Tech
+Crime
 
-* [ ] The repository is correctly created on GitHub.
-* [ ] All work is committed to **exactly one branch** named
-  `firstname_U20230xxx`.
-* [ ] **No work is pushed to `master`**.
-* [ ] The correct branch is pushed to GitHub.
+3) Three exploration strategies were implemented and evaluated:
 
----
+ε-Greedy
+Upper Confidence Bound (UCB)
+Softmax
 
-## 🔹 Notebook Submission
+4) Recommendation Engine
+A user is first classified into a context. The corresponding bandit agent selects a news category. An article is randomly sampled from news_articles.csv within that category and predicted for news category label. 
 
-* [ ] Exactly **one** Jupyter Notebook (`.ipynb`) is submitted.
-* [ ] The notebook is placed at the **root of the repository**.
-* [ ] The notebook is named **exactly**:
-  `lab3_results_<roll_number>.ipynb`.
-* [ ] The notebook runs **top to bottom without errors**.
-* [ ] All outputs (plots, tables, metrics) are visible in the notebook.
 
----
+- Observations:
 
-## 🔹 Sampler Usage
-
-* [ ] The provided `sampler` package is used **without modification**.
-* [ ] The sampler is initialized using your correct roll number `i`.
-* [ ] Rewards are obtained **only** via `sampler.sample(j)`.
-* [ ] No hard-coded or synthetic rewards are used.
-
----
-
-## 🔹 Contextual Bandit Implementation
-
-* [ ] User category is treated as the **context**.
-* [ ] News category is treated as the **bandit arm**.
-* [ ] The arm index mapping follows the specification in the lab handout.
-* [ ] All three algorithms are implemented:
-
-  * Epsilon-Greedy
-  * Upper Confidence Bound (UCB)
-  * SoftMax
-
----
-
-## 🔹 Evaluation and Plots
-
-* [ ] Classification accuracy is reported on `test_users.csv`.
-* [ ] Reinforcement learning simulation is run for **T = 10,000 steps**.
-* [ ] Plots include:
-
-  * Average Reward vs. Time (per context)
-  * Hyperparameter comparison plots
-* [ ] All plots have labeled axes, legends, and titles.
-
----
-
-## 🔹 README.md Requirements
-
-* [ ] README.md is present at the repository root.
-* [ ] It explains the overall approach and design decisions.
-* [ ] It summarizes key results and observations.
-* [ ] It includes clear instructions to reproduce the experiments.
-* [ ] All external references (if any) are properly cited.
-
----
-
-## Important Note
-
-> Submissions that do not follow the specified branch name, notebook naming convention, or sampler usage rules may not be evaluated.
+UCB performs best with rewards converging to 8.
+ε-Greedy performs well with moderate exploration (ε ≈ 0.05–0.1).
+Softmax is not that efficient with the texted hyperparameters. 
